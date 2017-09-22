@@ -1,4 +1,4 @@
-# comet-quickstart-guide
+# Comet quickstart guide
 
 ### view an example account at: https://www.comet.ml/view/Jon-Snow
 ### get your api key from: https://www.comet.ml/
