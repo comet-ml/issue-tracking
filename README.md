@@ -37,4 +37,8 @@
     
 ```
 
+#### Keras example: https://github.com/comet-ml/comet-keras-example
+#### Tensorflow example: https://github.com/comet-ml/comet-tensorflow-example
+#### Scikit example: https://github.com/comet-ml/comet-scikit-example
+
     
