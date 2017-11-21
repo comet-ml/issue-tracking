@@ -5,7 +5,6 @@
 
 #### make sure comet.ml is updated to latest version
 ```
-update your Comet installation
 pip install --no-cache-dir --upgrade comet_ml
 pip3 install --no-cache-dir --upgrade comet_ml
 ```
