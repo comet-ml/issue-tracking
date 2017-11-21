@@ -15,6 +15,7 @@
 ```
 #### 3) Create an experiment
 ```
+   experiment = Experiment(api_key="YOUR-API-KEY", project_name='my project', log_code=True)
    experiment = Experiment(api_key="YOUR-API-KEY", log_code=True)
 ```
 
