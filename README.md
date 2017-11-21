@@ -3,6 +3,12 @@
 ### view an example account at: https://www.comet.ml/view/Jon-Snow
 ### get your api key from: https://www.comet.ml/
 
+#### make sure comet.ml is updated to latest version
+```
+update your Comet installation
+pip install --no-cache-dir --upgrade comet_ml
+pip3 install --no-cache-dir --upgrade comet_ml
+```
 #### 1) Installing Comet on your machine:
 ```
     pip3 install comet_ml
