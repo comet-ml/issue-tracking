@@ -1,24 +1,24 @@
 # Comet quickstart guide
 
-### view an example account at: https://www.comet.ml/view/Jon-Snow
-### get your api key from: https://www.comet.ml/
+#### view an example account at: https://www.comet.ml/view/Jon-Snow
+#### get your api key from: https://www.comet.ml/
 
 #### make sure comet.ml is updated to latest version
 ```
 pip install --no-cache-dir --upgrade comet_ml
 pip3 install --no-cache-dir --upgrade comet_ml
 ```
-#### 1) Installing Comet on your machine:
+#### 1. Installing Comet on your machine:
 ```
     pip3 install comet_ml
     pip  install comet_ml
 ```
-#### 2) Import Comet in the top of your code
+#### 2. Import Comet in the top of your code
 ```
    from comet_ml import Experiment
    #other imports
 ```
-#### 3) Create an experiment
+#### 3. Create an experiment
 ```
    experiment = Experiment(api_key="YOUR-API-KEY", project_name='my project')
    
@@ -26,13 +26,13 @@ pip3 install --no-cache-dir --upgrade comet_ml
    experiment = Experiment(api_key="YOUR-API-KEY", log_code=False)
 ```
 
-#### 4) Extended usage:
-+ report dataset hash:
+#### 4. Extended usage:
+   * report dataset hash:
 ```
     train_data = ....
     experiment.log_dataset_hash(train_data)
 ```
-+ manual report parameters or metrics:
+   * manual report parameters or metrics:
 ```
     hyper_params = {"learning_rate": 0.5, "steps": 100000, "batch_size": 50}
     experiment.log_multiple_params(hyper_params)
