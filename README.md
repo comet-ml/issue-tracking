@@ -20,8 +20,10 @@ pip3 install --no-cache-dir --upgrade comet_ml
 ```
 #### 3) Create an experiment
 ```
-   experiment = Experiment(api_key="YOUR-API-KEY", project_name='my project', log_code=True)
-   experiment = Experiment(api_key="YOUR-API-KEY", log_code=True)
+   experiment = Experiment(api_key="YOUR-API-KEY", project_name='my project')
+   
+   #disable code save
+   experiment = Experiment(api_key="YOUR-API-KEY", log_code=False)
 ```
 
 #### 4) Extended usage:
@@ -43,7 +45,7 @@ pip3 install --no-cache-dir --upgrade comet_ml
     
 ```
 
-#### Keras example: https://github.com/comet-ml/comet-keras-example
+#### Keras example - [link](https://github.com/comet-ml/comet-quickstart-guide/blob/master/keras/comet_keras_example.py)
 #### Tensorflow example: https://github.com/comet-ml/comet-tensorflow-example
 #### Scikit example: https://github.com/comet-ml/comet-scikit-example
 
