@@ -45,8 +45,10 @@ pip3 install --no-cache-dir --upgrade comet_ml
     
 ```
 
-#### Keras example - [link](https://github.com/comet-ml/comet-quickstart-guide/blob/master/keras/comet_keras_example.py)
-#### Tensorflow example: https://github.com/comet-ml/comet-tensorflow-example
-#### Scikit example: https://github.com/comet-ml/comet-scikit-example
+#### 5. Read more:
+   * Create pull requests from Comet ML - [link](https://github.com/comet-ml/comet-quickstart-guide/tree/master/github-pullrequest)
+   * Keras example - [link](https://github.com/comet-ml/comet-quickstart-guide/blob/master/keras/comet_keras_example.py)
+   * Tensorflow example: https://github.com/comet-ml/comet-tensorflow-example
+   * Scikit example: https://github.com/comet-ml/comet-scikit-example
 
     
