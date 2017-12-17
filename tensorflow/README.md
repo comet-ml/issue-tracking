@@ -16,27 +16,27 @@ pip3 install --no-cache-dir --upgrade comet_ml
     pip install comet_ml
 ```
 
-   * import Comet:  [code](https://github.com/comet-ml/comet-tensorflow-example/blob/master/comet_tensorflow_example.py#L11)
+   * import Comet:  [code](https://github.com/comet-ml/comet-quickstart-guide/blob/master/tensorflow/comet_tensorflow_example.py#L11)
 ```
 #make sure comet_ml is the first import (before all other Machine learning lib)
 from comet_ml import Experiment
 ```
-   * create an Experiment: [code](https://github.com/comet-ml/comet-tensorflow-example/blob/master/comet_tensorflow_example.py#L45)
+   * create an Experiment: [code](https://github.com/comet-ml/comet-quickstart-guide/blob/master/tensorflow/comet_tensorflow_example.py#L45)
 ```
 # initiate an Experiment with your api key from https://www.comet.ml
 experiment = Experiment(api_key="YOUR-API-KEY", project_name='my project')
 ```
-+ report hyper params: [code](https://github.com/comet-ml/comet-tensorflow-example/blob/master/comet_tensorflow_example.py#L46)
++ report hyper params: [code](https://github.com/comet-ml/comet-quickstart-guide/blob/master/tensorflow/comet_tensorflow_example.py#L46)
 ```
 hyper_params = {"learning_rate": 0.5, "steps": 100000, "batch_size": 50}
 experiment.log_multiple_params(hyper_params)
 ```
-+ report dataset hash: [code](https://github.com/comet-ml/comet-tensorflow-example/blob/master/comet_tensorflow_example.py#L47)
++ report dataset hash: [code](https://github.com/comet-ml/comet-quickstart-guide/blob/master/tensorflow/comet_tensorflow_example.py#L47)
 ```
 mnist = input_data.read_data_sets("/tmp/tensorflow/mnist/input_data/", one_hot=True)
 experiment.log_dataset_hash(mnist)
 ```
-+ report loss, accuracy and steps: [code](https://github.com/comet-ml/comet-tensorflow-example/blob/master/comet_tensorflow_example.py#L53-L64)
++ report loss, accuracy and steps: [code](https://github.com/comet-ml/comet-quickstart-guide/blob/master/tensorflow/comet_tensorflow_example.py#L53-L64)
 ```
         for i in range(hyper_params["steps"]):
             batch = mnist.train.next_batch(hyper_params["batch_size"])
@@ -54,4 +54,4 @@ experiment.log_dataset_hash(mnist)
 
    * run your code as usual an view results on https://www.comet.ml/view/yourApiKey
 
-   * see full code example at: [link](https://github.com/comet-ml/comet-tensorflow-example/blob/master/comet_tensorflow_example.py)
+   * see full code example at: [link](https://github.com/comet-ml/comet-quickstart-guide/blob/master/tensorflow/comet_tensorflow_example.py)
