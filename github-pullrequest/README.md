@@ -24,7 +24,6 @@
 ```python
     experiment = Experiment(api_key="YourApiKey", project_name="YourProjectName")
 ```
-   * see more examples here
 
 #### 4. create pull request for desired experiment
 
