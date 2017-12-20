@@ -1,7 +1,6 @@
 # Comet quickstart guide
 
-#### view an example account at: https://www.comet.ml/view/Jon-Snow
-#### get your api key from: https://www.comet.ml/
+#### login/signup and get an api key on: https://www.comet.ml/
 
 #### make sure comet.ml is updated to latest version
 ```
