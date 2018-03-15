@@ -1,4 +1,4 @@
-# Comet quickstart guide
+# Comet quickstart guide [![PyPI version](https://badge.fury.io/py/comet-ml.svg)](https://badge.fury.io/py/comet-ml)
 
 #### login/signup and get an api key on: https://www.comet.ml/
 
