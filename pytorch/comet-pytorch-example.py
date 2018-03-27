@@ -90,9 +90,9 @@ for epoch in range(hyper_params['num_epochs']):
         correct += (predicted == labels.data).sum()
 
         # Log to Comet.ml
-        experiment.log_step(i)
-        experiment.log_loss(loss.data[0])
-        experiment.log_accuracy(correct / total)
+        experiment.set_step(i)
+        experiment.log_metric("loss", loss.data[0])
+        experiment.log_metric("accuracy", correct / total)
 
         if (i + 1) % 100 == 0:
             print('Epoch [%d/%d], Step [%d/%d], Loss: %.4f'
