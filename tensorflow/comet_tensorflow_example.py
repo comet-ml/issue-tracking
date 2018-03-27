@@ -52,7 +52,7 @@ def train(hyper_params):
 
         for i in range(hyper_params["steps"]):
             batch = mnist.train.next_batch(hyper_params["batch_size"])
-            experiment.log_step(i)
+            experiment.set_step(i)
             # Compute train accuracy every 10 steps
             if i % 10 == 0:
                 train_accuracy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1]})
@@ -61,7 +61,7 @@ def train(hyper_params):
 
             # Update weights (back propagation)
             loss = train_step.run(feed_dict={x: batch[0], y_: batch[1]})
-            experiment.log_loss(loss)
+            experiment.log_metric("loss", loss)
 
         ### Finished Training ###
 
