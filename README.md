@@ -1,3 +1,5 @@
+<img src="https://comet.ml/images/logo_comet_light.png" alt="Drawing" style="width: 350px;"/>
+
 
 ## Documentation 
 
