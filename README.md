@@ -4,6 +4,15 @@
 Full documentation and additional training examples are available on http://www.comet.ml/docs/
 
 
+- **Install Comet.ml from PyPI:**
+
+```sh
+pip install comet_ml
+```
+Comet.ml python SDK is compatible with: __Python 2.7-3.6__.
+
+
+
 ## Getting started: 30 seconds to Comet.ml 
 
 The core class of Comet.ml is an  __Experiment__, a specific run of a script that generated a result such as training a model
@@ -75,11 +84,3 @@ For a more in-depth tutorial about Comet.ml, you can check out:
 - [Sign up (free) on comet.ml and obtain an API key](https://www.comet.ml)
 
 
-
-
-- **Install Comet.ml from PyPI:**
-
-```sh
-pip install comet_ml
-```
-Comet.ml python SDK is compatible with: __Python 2.7-3.6__.
