@@ -1,54 +1,85 @@
-# Comet quickstart guide [![PyPI version](https://badge.fury.io/py/comet-ml.svg)](https://badge.fury.io/py/comet-ml)
 
-#### login/signup and get an api key on: https://www.comet.ml/
+## Documentation 
 
-#### make sure comet.ml is updated to latest version
-```
-pip install --no-cache-dir --upgrade comet_ml
-pip3 install --no-cache-dir --upgrade comet_ml
-```
-#### 1. Installing Comet on your machine:
-```
-    pip3 install comet_ml
-    pip  install comet_ml
-```
-#### 2. Import Comet in the top of your code
-```
-   from comet_ml import Experiment
-   #other imports
-```
-#### 3. Create an experiment
-```
-   experiment = Experiment(api_key="YOUR-API-KEY", project_name='my project')
-   
-   #disable code save
-   experiment = Experiment(api_key="YOUR-API-KEY", log_code=False)
+Full documentation and additional training examples are available on http://www.comet.ml/docs/
+
+
+## Getting started: 30 seconds to Comet.ml 
+
+The core class of Comet.ml is an  __Experiment__, a specific run of a script that generated a result such as training a model
+  on a single set of hyper parameters. An [`Experiment`](Experiment/#experiment). will automatically
+   log scripts output (stdout/stderr), code, and command line arguments on __any__ script and for the supported libraries will also log
+    hyper parameters, metrics and model configuration. 
+
+Here is the `Experiment` object:
+
+```python
+from comet_ml import Experiment
+experiment = Experiment(api_key="YOUR_API_KEY")
+
+# Your code.
 ```
 
-#### 4. Extended usage:
-   * report dataset hash:
-```
-    train_data = ....
-    experiment.log_dataset_hash(train_data)
-```
-   * manual report parameters or metrics:
-```
-    hyper_params = {"learning_rate": 0.5, "steps": 100000, "batch_size": 50}
-    experiment.log_multiple_params(hyper_params)
+The `Experiment` object logs various parameters of your experiment to Comet.ml
+```python
+from comet_ml import Experiment
+experiment = Experiment(api_key="YOUR_API_KEY")
+batch_size = 4 # A hyperparameter used somewhere in the code.
 
-    some_param = ...
-    experiment.log_parameter("param name", some_param)
-
-    train_accuracy = ...
-    experiment.log_metric("acc", train_accuracy)
-    
+experiment.log_parameter("batch_size", batch_size) 
 ```
 
-#### 5. Read more:
-   * Create pull requests from Comet ML - [link](https://github.com/comet-ml/comet-quickstart-guide/tree/master/github-pullrequest)
-   * Keras example - [link](https://github.com/comet-ml/comet-quickstart-guide/blob/master/keras/comet_keras_example.py)
-   * Tensorflow example: [link](https://github.com/comet-ml/comet-quickstart-guide/tree/master/tensorflow)
-   * Scikit example: [link](https://github.com/comet-ml/comet-quickstart-guide/blob/master/scikit/comet_scikit_example.py)
-   * Pytorch example: [link](https://github.com/comet-ml/comet-quickstart-guide/tree/master/pytorch)
+By default your experiment will be added to the project `Uncategorized Experiments`. You can also log your experiment to a specific project.
+```python
+from comet_ml import Experiment
 
-    
+#if "my project name" does not already exist, it will be created.
+experiment = Experiment(api_key="YOUR_API_KEY",
+                        project_name="my project name")
+batch_size = 4 
+
+experiment.log_parameter("batch_size", batch_size) 
+```
+
+
+You can also log a custom list of hyperparameters to your experiment via a dictionary.
+```python
+from comet_ml import Experiment
+experiment = Experiment(api_key="YOUR_API_KEY",
+                        project_name="my project name",
+                        auto_param_logging=False)
+batch_size = 128
+num_classes = 10
+epochs = 20
+
+params={
+    "batch_size":batch_size,
+    "epochs":epochs,
+    "num_classes":num_classes}
+
+experiment.log_multiple_params(params)
+```
+
+We all strive to be data driven and yet every day valuable experiments results are just lost and forgotten. Comet.ml provides
+a dead simple way of fixing that. Works with any workflow, any ML task, any machine and any piece of code.
+
+For a more in-depth tutorial about Comet.ml, you can check out:
+
+- [Getting started with the Experiment class](Experiment/#experiment)
+
+----------------
+
+
+## Installation
+
+- [Sign up (free) on comet.ml and obtain an API key](https://www.comet.ml)
+
+
+
+
+- **Install Comet.ml from PyPI:**
+
+```sh
+pip install comet_ml
+```
+Comet.ml python SDK is compatible with: __Python 2.7-3.6__.
