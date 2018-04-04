@@ -5,6 +5,9 @@
 
 Full documentation and additional training examples are available on http://www.comet.ml/docs/
 
+## Installation
+
+- [Sign up (free) on comet.ml and obtain an API key](https://www.comet.ml)
 
 - **Install Comet.ml from PyPI:**
 
@@ -81,8 +84,5 @@ For a more in-depth tutorial about Comet.ml, you can check out:
 ----------------
 
 
-## Installation
-
-- [Sign up (free) on comet.ml and obtain an API key](https://www.comet.ml)
 
 
