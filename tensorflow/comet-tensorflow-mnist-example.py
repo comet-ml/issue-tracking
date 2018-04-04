@@ -2,13 +2,15 @@
 See extensive documentation at
 https://www.tensorflow.org/get_started/mnist/beginners
 """
+#import comet_ml at the top of your file
+from comet_ml import Experiment
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from tensorflow.examples.tutorials.mnist import input_data
 import tensorflow as tf
 
-from comet_ml import Experiment
 
 def get_data():
     mnist = input_data.read_data_sets("/tmp/tensorflow/mnist/input_data/", one_hot=True)
@@ -43,26 +45,26 @@ def train(hyper_params):
     train_step, cross_entropy, accuracy, x, y, y_ = build_model_graph(hyper_params)
 
     #log parameters to Comet.ml
-    experiment = Experiment(api_key="YOUR-API-KEY", project_name='tensorflow-examples')
-    experiment.log_multiple_params(hyper_params)
-    experiment.log_dataset_hash(mnist)
+    exp = Experiment(api_key="YOUR-API-KEY", project_name='tensorflow examples')
+    exp.log_multiple_params(hyper_params)
+    exp.log_dataset_hash(mnist)
 
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        experiment.set_model_graph(sess.graph)
+        exp.set_model_graph(sess.graph)
 
         for i in range(hyper_params["steps"]):
             batch = mnist.train.next_batch(hyper_params["batch_size"])
-            experiment.set_step(i)
+            exp.set_step(i)
             # Compute train accuracy every 10 steps
             if i % 10 == 0:
                 train_accuracy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1]})
                 print('step %d, training accuracy %g' % (i, train_accuracy))
-                experiment.log_metric("acc", train_accuracy)
+                exp.log_metric("acc", train_accuracy)
 
             # Update weights (back propagation)
             loss = train_step.run(feed_dict={x: batch[0], y_: batch[1]})
-            experiment.log_metric("loss", loss)
+            exp.log_metric("loss", loss)
 
         ### Finished Training ###
 

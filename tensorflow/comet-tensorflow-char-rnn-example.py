@@ -7,11 +7,11 @@ https://gist.github.com/karpathy/d4dee566867f8291f086
 Requires tensorflow>=1.0
 BSD License
 """
-#import comet_ml in the top of your file
+#import comet_ml at the top of your file
 from comet_ml import Experiment
 
 #create an experiment with your api key
-experiment = Experiment(api_key="YOUR-API-KEY", log_code=True, project_name='tensorflow-examples')
+exp = Experiment(api_key="YOUR-API-KEY", log_code=True, project_name='tensorflow examples')
 
 import random
 import numpy as np
@@ -25,7 +25,7 @@ seed_value = 42
 tf.set_random_seed(seed_value)
 random.seed(seed_value)
 
-##Dracula by Bram Stoker from
+##Generative Model using Dracula by Bram Stoker
 
 book_path = os.path.join('data','dracula.txt')
 
@@ -78,24 +78,17 @@ chars = sorted(list(set(data)))
 data_size, vocab_size = len(data), len(chars)
 print('Data has %d characters, %d unique.\n' % (data_size, vocab_size))
 
-
 char_to_ix = {ch: i for i, ch in enumerate(chars)}
 ix_to_char = {i: ch for i, ch in enumerate(chars)}
 
-
-print("Cleaned Results")
-print(ix_to_char)
-print(char_to_ix)
-
-
-#Define the TensorFlow Graph  -
 tf.reset_default_graph()
+
 # Hyper-parameters, initialization
 hidden_size   = 300  # number of hidden neurons
 seq_length    = 45   # number of steps to unroll
 
 
-#log your favorite parameters to Comet.ml!
+#log your  parameters to Comet.ml!
 params = {"len(chars)":len(chars),
         "text":"Dracula",
         "hidden_size":hidden_size,
@@ -153,16 +146,15 @@ def one_hot(v):
     return np.eye(vocab_size)[v]
 
 
-# In[ ]:
-
-
-# Start Session!
+# begin training
 sess = tf.Session()
 init = tf.global_variables_initializer()
 sess.run(init)
 
+#log model graph
+exp.set_model_graph(sess.graph)
 # Initial values
-MAXITERS = 10000 # try 1000000
+MAXITERS = 500000
 n, p = 0, 0
 hprev_val = np.zeros([1, hidden_size])
 
@@ -183,8 +175,12 @@ while (n < MAXITERS):
                                       feed_dict={inputs: input_vals,
                                                  targets: target_vals,
                                                  init_state: hprev_val})
+    #log the loss to Comet.ml
+    exp.log_metric("loss",loss_val, step=n)
+
     if n % 500 == 0:
-        # Progress
+        # Log Progress
+
         print('iter: %d, p: %d, loss: %f' % (n, p, loss_val))
 
         # Do sampling

@@ -3,8 +3,8 @@
 from comet_ml import Experiment
 
 #create an experiment with your api key
-exp = Experiment(api_key="Jrmp1SbY5izsv7D1PWMMRpDGD",
-  project_name='sklearn-demos',
+exp = Experiment(api_key="YOUR-API-KEY",
+  project_name='sklearn demos',
   auto_param_logging=False)
 
 import numpy as np
@@ -48,13 +48,10 @@ clf.fit(X_train_scaled, y_train)
 y_pred = clf.predict(X_test_scaled)
 
 print("\nResults\nConfusion matrix \n {}".format(confusion_matrix(y_test, y_pred)))
+
 f1 = f1_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred)
 recall = recall_score(y_test, y_pred)
-
-print("F1 score is {:6.3f}".format(f1))
-print("Precision score is {:6.3f}".format(precision))
-print("Recall score is {:6.3f}".format(recall))
 
 params={"random_state":random_state,
         "model_type":"logreg",
@@ -62,7 +59,6 @@ params={"random_state":random_state,
         "param_grid":str(param_grid),
         "stratify":True
 }
-
 metrics = {"f1":f1,
 "recall":recall,
 "precision":precision

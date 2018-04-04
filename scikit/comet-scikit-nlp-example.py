@@ -3,17 +3,14 @@ from __future__ import print_function
 from comet_ml import Experiment
 
 from sklearn.feature_extraction.text import CountVectorizer
-
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.datasets import fetch_20newsgroups
-
 from sklearn.linear_model import SGDClassifier
-
 from sklearn.metrics import accuracy_score
 
 
-experiment  = Experiment(api_key="Jon-Snow", project_name='my project')
+experiment  = Experiment(api_key="YOUR-API-KEY", project_name=' 20 newsgroups project')
 
 # Get dataset and put into train,test lists
 categories = ['alt.atheism', 'soc.religion.christian',
@@ -22,7 +19,9 @@ categories = ['alt.atheism', 'soc.religion.christian',
 twenty_train = fetch_20newsgroups(subset='train',categories=categories, shuffle=True, random_state=42)
 twenty_test = fetch_20newsgroups(subset='test',categories=categories, shuffle=True, random_state=42)
 
+#log hash of your dataset to Comet.ml
 experiment.log_dataset_hash(twenty_train)
+
 # Build training pipeline
 
 text_clf = Pipeline([('vect', CountVectorizer()), # Counts occurrences of each word
