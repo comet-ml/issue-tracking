@@ -1,5 +1,6 @@
 # coding: utf-8
 #import comet_ml in the top of your file
+#Example adapted from https://github.com/keras-team/keras/tree/master/examples
 from comet_ml import Experiment
 
 #create an experiment with your api key

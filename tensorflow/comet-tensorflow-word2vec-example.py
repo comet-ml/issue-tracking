@@ -1,5 +1,5 @@
 """ starter code for word2vec skip-gram model with NCE loss
-Modified from https://github.com/chiphuyen/stanford-tensorflow-tutorials/tree/master/examples
+Example adapted from https://github.com/chiphuyen/stanford-tensorflow-tutorials/tree/master/examples by Chip Huyen
 """
 #import comet_ml at the top of your file
 from comet_ml import Experiment

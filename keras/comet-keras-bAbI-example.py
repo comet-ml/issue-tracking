@@ -1,5 +1,8 @@
 # coding: utf-8
 
+'''
+Example adapted from https://github.com/keras-team/keras/tree/master/examples
+'''
 '''Trains two recurrent neural networks based upon a story and a question.
 
 The resulting merged vector is then queried to answer a range of bAbI tasks.

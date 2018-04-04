@@ -1,4 +1,7 @@
 # coding: utf-8
+'''
+Example adapted from https://github.com/keras-team/keras/tree/master/examples
+'''
 '''Trains a Bidirectional LSTM on the IMDB sentiment classification task.
 '''
 # import comet_ml in the top of your file(before all other Machine learning libs)

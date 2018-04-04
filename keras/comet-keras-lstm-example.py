@@ -1,5 +1,6 @@
 # coding: utf-8
 '''Trains an LSTM model on the IMDB sentiment classification task.
+Example adapted from https://github.com/keras-team/keras/tree/master/examples
 '''
 #import comet_ml in the top of your file(before all other Machine learning libs)
 from comet_ml import Experiment

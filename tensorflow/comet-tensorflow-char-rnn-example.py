@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-Vanilla Char-RNN using TensorFlow by Vinh Khuc (@knvinh).
+Example adapted from Vanilla Char-RNN using TensorFlow by Vinh Khuc (@knvinh) https://gist.github.com/vinhkhuc/7ec5bf797308279dc587.
 Adapted from Karpathy's min-char-rnn.py
 https://gist.github.com/karpathy/d4dee566867f8291f086
 Requires tensorflow>=1.0

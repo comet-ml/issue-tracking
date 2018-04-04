@@ -1,6 +1,6 @@
 """ Using convolutional net on MNIST dataset of handwritten digits
 
-modified from https://github.com/chiphuyen/stanford-tensorflow-tutorials/blob/master/examples/07_convnet_mnist.py by Chip Huyen
+Example adapted from from https://github.com/chiphuyen/stanford-tensorflow-tutorials/blob/master/examples/07_convnet_mnist.py by Chip Huyen
 
 """
 #import comet_ml at the top of your file

@@ -1,5 +1,5 @@
 # coding: utf-8
-#keras-deep-dream.py
+#Example adapted from https://github.com/keras-team/keras/tree/master/examples
 '''Deep Dreaming in Keras.
 
 Run the script with:
