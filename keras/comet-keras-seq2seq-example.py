@@ -3,7 +3,7 @@
 from comet_ml import Experiment
 
 #create an experiment with your api key
-experiment = Experiment(api_key="YOUR-API-KEY", log_code=True, project_name='seq2seq')
+experiment = Experiment(api_key="YOUR-API-KEY", log_code=True, project_name='keras-seq2seq')
 
 '''Sequence to sequence example in Keras (character-level).
 

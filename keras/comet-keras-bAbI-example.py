@@ -61,7 +61,7 @@ This becomes especially obvious on QA2 and QA3, both far longer than QA1.
 from comet_ml import Experiment
 
 #create an experiment with your api key
-exp = Experiment(api_key='YOUR-API-KEY', log_code=True, project_name='bAbi-tasks', auto_param_logging=False)
+exp = Experiment(api_key='YOUR-API-KEY', log_code=True, project_name='bAbI-tasks', auto_param_logging=False)
 
 from functools import reduce
 import re

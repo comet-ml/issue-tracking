@@ -14,7 +14,7 @@ from keras.optimizers import RMSprop
 
 def main():
     num_classes = 10
-    
+
     # the data, shuffled and split between train and test sets
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
@@ -47,12 +47,12 @@ def train(x_train,y_train,x_test,y_test):
     model = build_model_graph()
 
     # initiate an Experiment with your api key from https://www.comet.ml
-    experiment = Experiment(api_key="YOUR-API-KEY", project_name='my project')
+    experiment = Experiment(api_key="YOUR-API-KEY", project_name='keras-examples')
     experiment.log_dataset_hash(x_train)
 
-    # and thats it... when you run your code all relevant data will be tracked and logged in https://www.comet.ml/view/YOUR-API-KEY  
+    # and thats it... when you run your code all relevant data will be tracked and logged in https://www.comet.ml/view/YOUR-API-KEY
     model.fit(x_train, y_train, batch_size=128, epochs=50, validation_data=(x_test, y_test))
-    
+
     score = model.evaluate(x_test, y_test, verbose=0)
 
 if __name__ == '__main__':

@@ -58,7 +58,7 @@ class RNN(nn.Module):
         return out
 
 
-experiment = Experiment(api_key="YOUR_API_KEY", project_name='my project')
+experiment = Experiment(api_key="YOUR-API-KEY", project_name='pytorch-examples')
 experiment.log_multiple_params(hyper_params)
 
 rnn = RNN(hyper_params['input_size'], hyper_params['hidden_size'], hyper_params['num_layers'], hyper_params['num_classes'])

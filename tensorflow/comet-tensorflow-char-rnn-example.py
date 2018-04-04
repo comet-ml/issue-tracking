@@ -11,7 +11,7 @@ BSD License
 from comet_ml import Experiment
 
 #create an experiment with your api key
-experiment = Experiment(api_key="Jrmp1SbY5izsv7D1PWMMRpDGD", log_code=True, project_name='tensorflow-demos-public')
+experiment = Experiment(api_key="YOUR-API-KEY", log_code=True, project_name='tensorflow-examples')
 
 import random
 import numpy as np

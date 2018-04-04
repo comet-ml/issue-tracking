@@ -42,7 +42,8 @@ def train(hyper_params):
     # Get graph definition, tensors and ops
     train_step, cross_entropy, accuracy, x, y, y_ = build_model_graph(hyper_params)
 
-    experiment = Experiment(api_key="XXXX", project_name='my project')
+    #log parameters to Comet.ml
+    experiment = Experiment(api_key="YOUR-API-KEY", project_name='tensorflow-examples')
     experiment.log_multiple_params(hyper_params)
     experiment.log_dataset_hash(mnist)
 
@@ -75,3 +76,4 @@ def train(hyper_params):
 if __name__ == '__main__':
     hyper_params = {"learning_rate": 0.5, "steps": 100000, "batch_size": 50}
 train(hyper_params)
+
