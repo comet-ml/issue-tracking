@@ -21,7 +21,7 @@ Comet.ml python SDK is compatible with: __Python 2.7-3.6__.
 ## Getting started: 30 seconds to Comet.ml 
 
 The core class of Comet.ml is an  __Experiment__, a specific run of a script that generated a result such as training a model
-  on a single set of hyper parameters. An [`Experiment`](Experiment/#experiment). will automatically
+  on a single set of hyper parameters. An [`Experiment`](https://www.comet.ml/docs/python-sdk/Experiment/#experiment). will automatically
    log scripts output (stdout/stderr), code, and command line arguments on __any__ script and for the supported libraries will also log
     hyper parameters, metrics and model configuration. 
 
@@ -79,7 +79,7 @@ a dead simple way of fixing that. Works with any workflow, any ML task, any mach
 
 For a more in-depth tutorial about Comet.ml, you can check out:
 
-- [Getting started with the Experiment class](Experiment/#experiment)
+- [Getting started with the Experiment class](https://www.comet.ml/docs/python-sdk/Experiment/#experiment)
 
 ----------------
 
