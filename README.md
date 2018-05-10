@@ -1,7 +1,8 @@
 <img src="https://comet.ml/images/logo_comet_light.png" width="350" alt="Drawing" style="width: 350px;"/>
 
 
-## Documentation 
+## Documentation
+[![PyPI version](https://badge.fury.io/py/comet-ml.svg)](https://badge.fury.io/py/comet-ml)
 
 Full documentation and additional training examples are available on http://www.comet.ml/docs/
 
