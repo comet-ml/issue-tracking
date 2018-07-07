@@ -1,11 +1,16 @@
 # coding: utf-8
-#import comet_ml in the top of your file
-#Example adapted from https://github.com/keras-team/keras/tree/master/examples
+# import comet_ml in the top of your file
+# Example adapted from https://github.com/keras-team/keras/tree/master/examples
 from comet_ml import Experiment
 
-#create an experiment with your api key
-experiment = Experiment(api_key="YOUR-API-KEY", log_code=True, project_name='keras-seq2seq')
-
+# create an experiment with your api key
+import os
+# Setting the API key (saved as environment variable)
+experiment = Experiment(
+    #api_key="YOUR API KEY",
+    # or
+    api_key=os.environ.get("COMET_API_KEY"),
+    project_name='comet-examples')
 '''Sequence to sequence example in Keras (character-level).
 
 This script demonstrates how to implement a basic character-level
@@ -63,7 +68,7 @@ from keras.callbacks import ModelCheckpoint
 import numpy as np
 
 batch_size = 64  # Batch size for training.
-epochs = 100 # Try 100  # Number of epochs to train for.
+epochs = 100  # Try 100  # Number of epochs to train for.
 latent_dim = 256  # Latent dimensionality of the encoding space.
 num_samples = 10000  # Number of samples to train on.
 # Path to the data txt file on disk.
@@ -153,8 +158,8 @@ model = Model([encoder_inputs, decoder_inputs], decoder_outputs)
 
 # Run training
 model.compile(optimizer='adam',
-    loss='categorical_crossentropy',
-    metrics=['accuracy'])
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
 
 print(model.summary())
 
@@ -162,7 +167,8 @@ model.fit([encoder_input_data, decoder_input_data], decoder_target_data,
           batch_size=batch_size,
           epochs=epochs,
           validation_split=0.2,
-          callbacks=[ModelCheckpoint( "s2s-checkpoint{epoch:02d}", monitor='loss', verbose=0, save_best_only=True, save_weights_only=False, mode='auto', period=5 )]
+          callbacks=[ModelCheckpoint("s2s-checkpoint{epoch:02d}", monitor='loss', verbose=0,
+                                     save_best_only=True, save_weights_only=False, mode='auto', period=5)]
           )
 # Save model
 model.save('s2s{epochs}.h5')
@@ -222,7 +228,7 @@ def decode_sequence(input_seq):
         # Exit condition: either hit max length
         # or find stop character.
         if (sampled_char == '\n' or
-           len(decoded_sentence) > max_decoder_seq_length):
+                len(decoded_sentence) > max_decoder_seq_length):
             stop_condition = True
 
         # Update the target sequence (of length 1).

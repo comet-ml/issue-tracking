@@ -63,8 +63,13 @@ This becomes especially obvious on QA2 and QA3, both far longer than QA1.
 '''
 from comet_ml import Experiment
 
-#create an experiment with your api key
-exp = Experiment(api_key='YOUR-API-KEY', log_code=True, project_name='bAbI-tasks', auto_param_logging=False)
+import os
+# Setting the API key (saved as environment variable)
+exp = Experiment(
+    #api_key="YOUR API KEY",
+    # or
+    api_key=os.environ.get("COMET_API_KEY"),
+    project_name='comet-examples')
 
 from functools import reduce
 import re
@@ -79,6 +84,7 @@ from keras.layers import recurrent
 from keras.models import Model
 from keras.preprocessing.sequence import pad_sequences
 from keras.callbacks import EarlyStopping
+
 
 def tokenize(sent):
     '''Return the tokens of a sentence including punctuation.
@@ -130,8 +136,10 @@ def get_stories(f, only_supporting=False, max_length=None):
     any stories longer than max_length tokens will be discarded.
     '''
     data = parse_stories(f.readlines(), only_supporting=only_supporting)
-    flatten = lambda data: reduce(lambda x, y: x + y, data)
-    data = [(flatten(story), q, answer) for story, q, answer in data if not max_length or len(flatten(story)) < max_length]
+
+    def flatten(data): return reduce(lambda x, y: x + y, data)
+    data = [(flatten(story), q, answer) for story, q,
+            answer in data if not max_length or len(flatten(story)) < max_length]
     return data
 
 
@@ -150,19 +158,20 @@ def vectorize_stories(data, word_idx, story_maxlen, query_maxlen):
         ys.append(y)
     return pad_sequences(xs, maxlen=story_maxlen), pad_sequences(xqs, maxlen=query_maxlen), np.array(ys)
 
+
 RNN = recurrent.LSTM
 EMBED_HIDDEN_SIZE = 50
 SENT_HIDDEN_SIZE = 100
 QUERY_HIDDEN_SIZE = 100
 BATCH_SIZE = 32
-EPOCHS = 10 # try #40
+EPOCHS = 10  # try #40
 
-params={"EMBED_HIDDEN_SIZE":EMBED_HIDDEN_SIZE,
-"SENT_HIDDEN_SIZE":SENT_HIDDEN_SIZE,
-"QUERY_HIDDEN_SIZE":QUERY_HIDDEN_SIZE,
-"BATCH_SIZE":BATCH_SIZE,
-"EPOCHS":EPOCHS
-}
+params = {"EMBED_HIDDEN_SIZE": EMBED_HIDDEN_SIZE,
+          "SENT_HIDDEN_SIZE": SENT_HIDDEN_SIZE,
+          "QUERY_HIDDEN_SIZE": QUERY_HIDDEN_SIZE,
+          "BATCH_SIZE": BATCH_SIZE,
+          "EPOCHS": EPOCHS
+          }
 exp.log_multiple_params(params)
 
 
@@ -172,7 +181,8 @@ print('RNN / Embed / Sent / Query = {}, {}, {}, {}'.format(RNN,
                                                            QUERY_HIDDEN_SIZE))
 
 try:
-    path = get_file('babi-tasks-v1-2.tar.gz', origin='https://s3.amazonaws.com/text-datasets/babi_tasks_1-20_v1-2.tar.gz')
+    path = get_file('babi-tasks-v1-2.tar.gz',
+                    origin='https://s3.amazonaws.com/text-datasets/babi_tasks_1-20_v1-2.tar.gz')
 except:
     print('Error downloading dataset, please download it manually:\n'
           '$ wget http://www.thespermwhale.com/jaseweston/babi/tasks_1-20_v1-2.tar.gz\n'
@@ -237,7 +247,8 @@ print(model.summary())
 print('Training')
 model.fit([x, xq], y,
           batch_size=BATCH_SIZE,
-          callbacks=[EarlyStopping(monitor='loss', min_delta=0.001, patience=1, verbose=1, mode='auto')],
+          callbacks=[EarlyStopping(
+              monitor='loss', min_delta=0.001, patience=1, verbose=1, mode='auto')],
           epochs=EPOCHS,
           validation_split=0.05)
 loss, acc = model.evaluate([tx, txq], ty,
