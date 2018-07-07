@@ -1,13 +1,15 @@
 # coding: utf-8
-#import comet_ml in the top of your file(before all other Machine learning libs)
+# import comet_ml in the top of your file(before all other Machine learning libs)
 '''Example adapted from https://github.com/keras-team/keras/tree/master/examples'''
 from comet_ml import Experiment
 
-#create an experiment with your api key
-exp = Experiment(api_key='YOUR-API-KEY',
-  log_code=True,
-  project_name='imdb-sentiment',
-  auto_param_logging=False)
+import os
+# Setting the API key (saved as environment variable)
+exp = Experiment(
+    #api_key="YOUR API KEY",
+    # or
+    api_key=os.environ.get("COMET_API_KEY"),
+    project_name='comet-examples')
 
 
 from keras.preprocessing import sequence
@@ -35,24 +37,25 @@ lstm_output_size = 70
 batch_size = 30
 epochs = 2
 
-params={"layer1_kernel_size":kernel_size,
-        "max_features":max_features,
-        "maxlen":maxlen,
-        "embedding_size":embedding_size,
-        "layer1_filters":filters,
-        "dropout":0.25,
-        "layer1":"Conv1D",
-        "layer2":"LSTM",
-        "layer2_nodes":lstm_output_size,
-        "layer1_pool_size":pool_size,
-        "epochs":epochs,
-        "batch_size":batch_size
-}
-#log params to Comet.ml
+params = {"layer1_kernel_size": kernel_size,
+          "max_features": max_features,
+          "maxlen": maxlen,
+          "embedding_size": embedding_size,
+          "layer1_filters": filters,
+          "dropout": 0.25,
+          "layer1": "Conv1D",
+          "layer2": "LSTM",
+          "layer2_nodes": lstm_output_size,
+          "layer1_pool_size": pool_size,
+          "epochs": epochs,
+          "batch_size": batch_size
+          }
+# log params to Comet.ml
 exp.log_multiple_params(params)
 
 print('Loading data...')
-(x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=max_features, skip_top=50)
+(x_train, y_train), (x_test, y_test) = imdb.load_data(
+    num_words=max_features, skip_top=50)
 print(len(x_train), 'train sequences')
 print(len(x_test), 'test sequences')
 
@@ -81,7 +84,8 @@ model.compile(loss='binary_crossentropy',
               optimizer='adam',
               metrics=['accuracy'])
 
-print(model.summary()) #always a good idea to print summary so it gets logged to the output tab on your experiment
+# always a good idea to print summary so it gets logged to the output tab on your experiment
+print(model.summary())
 
 print('Training...')
 model.fit(x_train, y_train,

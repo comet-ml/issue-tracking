@@ -6,10 +6,13 @@ Example adapted from https://github.com/keras-team/keras/tree/master/examples
 '''
 # import comet_ml in the top of your file(before all other Machine learning libs)
 from comet_ml import Experiment
-
-#create an experiment with your api key
-exp = Experiment(api_key='YOUR-API-KEY',project_name='imdb-sentiment',
-  auto_param_logging=True)
+import os
+# Setting the API key (saved as environment variable)
+exp = Experiment(
+    #api_key="YOUR API KEY",
+    # or
+    api_key=os.environ.get("COMET_API_KEY"),
+    project_name='comet-examples')
 
 import numpy as np
 
@@ -22,31 +25,31 @@ from keras.callbacks import EarlyStopping, ModelCheckpoint
 max_features = 20000
 # cut texts after this number of words
 # (among top max_features most common words)
-skip_top = 30 #top occuring words to skip
+skip_top = 30  # top occuring words to skip
 maxlen = 100
 batch_size = 32
-epochs = 1 #try 4
+epochs = 1  # try 4
 num_nodes = 8
 dropout = 0.6
 
-params = {"num_nodes":num_nodes,
-          "model_type":"Bidirectional LSTM",
-          "dropout":dropout,
-          "auto_param_logging":True,
-          "skip_top":skip_top,
-          "maxlen":maxlen,
-          "batch_size":batch_size,
-          "max_features":max_features,
-          "epochs":epochs
-}
+params = {"num_nodes": num_nodes,
+          "model_type": "Bidirectional LSTM",
+          "dropout": dropout,
+          "auto_param_logging": True,
+          "skip_top": skip_top,
+          "maxlen": maxlen,
+          "batch_size": batch_size,
+          "max_features": max_features,
+          "epochs": epochs
+          }
 
-#log params to Comet.ml
+# log params to Comet.ml
 exp.log_multiple_params(params)
 
 print('Loading data...')
 (x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=max_features,
-  skip_top=skip_top,
-  seed=42)
+                                                      skip_top=skip_top,
+                                                      seed=42)
 print(len(x_train), 'train sequences')
 print(len(x_test), 'test sequences')
 
@@ -73,5 +76,6 @@ model.fit(x_train, y_train,
           batch_size=batch_size,
           epochs=epochs,
           validation_data=[x_test, y_test],
-          callbacks=[EarlyStopping(monitor='val_loss', min_delta=1e-4, patience=3, verbose=1, mode='auto')]
+          callbacks=[EarlyStopping(
+              monitor='val_loss', min_delta=1e-4, patience=3, verbose=1, mode='auto')]
           )

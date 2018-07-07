@@ -1,9 +1,11 @@
-#Trains a simple deep NN on the MNIST dataset.
+# Trains a simple deep NN on the MNIST dataset.
 from __future__ import print_function
 
-#pre install comet_ml by running : pip install comet_ml
-#make sure comet_ml is the first import (before all other Machine learning lib)
+# pre install comet_ml by running : pip install comet_ml
+# make sure comet_ml is the first import (before all other Machine learning lib)
 from comet_ml import Experiment
+import os
+
 
 import keras
 from keras.datasets import mnist
@@ -31,29 +33,38 @@ def main():
     y_train = keras.utils.to_categorical(y_train, num_classes)
     y_test = keras.utils.to_categorical(y_test, num_classes)
 
-    train(x_train,y_train,x_test,y_test)
+    train(x_train, y_train, x_test, y_test)
+
 
 def build_model_graph(input_shape=(784,)):
     model = Sequential()
     model.add(Dense(512, activation='relu', input_shape=(784,)))
     model.add(Dense(512, activation='relu'))
     model.add(Dense(10, activation='softmax'))
-    model.compile(loss='categorical_crossentropy',optimizer=RMSprop(), metrics=['accuracy'])
+    model.compile(loss='categorical_crossentropy',
+                  optimizer=RMSprop(), metrics=['accuracy'])
 
     return model
 
-def train(x_train,y_train,x_test,y_test):
+
+def train(x_train, y_train, x_test, y_test):
     # Define model
     model = build_model_graph()
 
-    # initiate an Experiment with your api key from https://www.comet.ml
-    experiment = Experiment(api_key="YOUR-API-KEY", project_name='keras-examples')
+    # Setting the API key (saved as environment variable)
+    experiment = Experiment(
+        #api_key="YOUR API KEY",
+        # or
+        api_key=os.environ.get("COMET_API_KEY"),
+        project_name='comet-examples')
     experiment.log_dataset_hash(x_train)
 
     # and thats it... when you run your code all relevant data will be tracked and logged in https://www.comet.ml/view/YOUR-API-KEY
-    model.fit(x_train, y_train, batch_size=128, epochs=50, validation_data=(x_test, y_test))
+    model.fit(x_train, y_train, batch_size=128,
+              epochs=50, validation_data=(x_test, y_test))
 
     score = model.evaluate(x_test, y_test, verbose=0)
+
 
 if __name__ == '__main__':
     main()

@@ -1,5 +1,5 @@
 # coding: utf-8
-#Example adapted from https://github.com/keras-team/keras/tree/master/examples
+# Example adapted from https://github.com/keras-team/keras/tree/master/examples
 '''Deep Dreaming in Keras.
 
 Run the script with:
@@ -11,11 +11,16 @@ e.g.:
 python deep_dream.py img/mypic.jpg results/dream
 ```
 '''
-#import comet_ml in the top of your file
+# import comet_ml in the top of your file
 from comet_ml import Experiment
 
-#create an experiment with your api key
-experiment = Experiment(api_key="YOUR-API-KEY", log_code=True, project_name='deep-dream')
+import os
+# Setting the API key (saved as environment variable)
+exp = Experiment(
+    #api_key="YOUR API KEY",
+    # or
+    api_key=os.environ.get("COMET_API_KEY"),
+    project_name='comet-examples')
 
 from keras.preprocessing.image import load_img, img_to_array
 import numpy as np
@@ -29,6 +34,7 @@ parser = argparse.ArgumentParser(description='Deep Dreams with Keras.')
 parser.add_argument('base_image_path', metavar='base', type=str,
                     help='Path to the image to transform.')
 parser.add_argument('result_prefix', metavar='res_prefix', type=str,
+                    default='dd-res',
                     help='Prefix for the saved results.')
 
 args = parser.parse_args()
@@ -73,6 +79,7 @@ def deprocess_image(x):
     x = np.clip(x, 0, 255).astype('uint8')
     return x
 
+
 K.set_learning_phase(0)
 
 # Build the InceptionV3 network with our placeholder.
@@ -90,7 +97,8 @@ layer_dict = dict([(layer.name, layer) for layer in model.layers])
 loss = K.variable(0.)
 for layer_name in settings['features']:
     # Add the L2 norm of the features of a layer to the loss.
-    assert layer_name in layer_dict.keys(), 'Layer ' + layer_name + ' not found in model.'
+    assert layer_name in layer_dict.keys(), 'Layer ' + layer_name + \
+        ' not found in model.'
     coeff = settings['features'][layer_name]
     x = layer_dict[layer_name].output
     # We avoid border artifacts by only involving non-border pixels in the loss.
