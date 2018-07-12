@@ -5,9 +5,9 @@ import os
 
 # Setting the API key (saved as environment variable)
 experiment = Experiment(
-    api_key="YOUR API KEY"
+    #api_key="YOUR API KEY",
     # or
-    # api_key=os.environ.get("COMET_API_KEY"),
+    api_key=os.environ.get("COMET_API_KEY"),
     project_name='comet-examples')
 
 import numpy as np

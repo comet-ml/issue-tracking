@@ -11,9 +11,9 @@ from sklearn.metrics import accuracy_score
 
 # Setting the API key (saved as environment variable)
 experiment = Experiment(
-    api_key="YOUR API KEY"
+    #api_key="YOUR API KEY",
     # or
-    # api_key=os.environ.get("COMET_API_KEY"),
+    api_key=os.environ.get("COMET_API_KEY"),
     project_name='comet-examples')
 
 # Get dataset and put into train,test lists
