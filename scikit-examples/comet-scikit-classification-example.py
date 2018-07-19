@@ -68,6 +68,6 @@ metrics = {"f1": f1,
            "precision": precision
            }
 
-exp.log_dataset_hash(X_train_scaled)
-exp.log_multiple_params(params)
-exp.log_multiple_metrics(metrics)
+experiment.log_dataset_hash(X_train_scaled)
+experiment.log_multiple_params(params)
+experiment.log_multiple_metrics(metrics)
