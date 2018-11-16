@@ -26,18 +26,22 @@ from __future__ import print_function
 ## -----------------------------------------------------------
 ## 1. Get an account from comet.ml
 ## 2. In the file .env, store your API key like this:
-##    COMET_API_KEY="..." 
-## 3. Add these two lines: ----------------------------------- 
+##    COMET_API_KEY="..."
+## 3. Add these two lines: -----------------------------------
 
 from comet_ml import Experiment
-experiment = Experiment(project_name="tensorflow",
-                        auto_metric_logging=False)
+experiment = Experiment(project_name="tensorflow")
 
 ## 4. Open you experiment in a webpage and watch it learn:
-##experiment.display()
-## 5. Add a
+
+experiment.display()
+
+## -----------------------------------------------------------
+## 5. Add a custom hook, like this one:
 
 from hooks import CometSessionHook
+
+## 6. See below
 ## -----------------------------------------------------------
 
 import argparse
@@ -62,11 +66,13 @@ def my_model(features, labels, mode, params):
 
     # Compute predictions.
     predicted_classes = tf.argmax(logits, 1)
-    predictions = {
-        'class_ids': predicted_classes[:, tf.newaxis],
-        'probabilities': tf.nn.softmax(logits),
-        'logits': logits,
-    }
+    if mode == tf.estimator.ModeKeys.PREDICT:
+        predictions = {
+            'class_ids': predicted_classes[:, tf.newaxis],
+            'probabilities': tf.nn.softmax(logits),
+            'logits': logits,
+        }
+        return tf.estimator.EstimatorSpec(mode, predictions=predictions)
 
     # Compute loss.
     loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
@@ -78,8 +84,18 @@ def my_model(features, labels, mode, params):
     metrics = {'accuracy': accuracy}
     tf.summary.scalar('accuracy', accuracy[1])
 
+    if mode == tf.estimator.ModeKeys.EVAL:
+        return tf.estimator.EstimatorSpec(
+            mode, loss=loss, eval_metric_ops=metrics)
+
+    # Create training op.
+    assert mode == tf.estimator.ModeKeys.TRAIN
+
     optimizer = tf.train.AdagradOptimizer(learning_rate=0.1)
     train_op = optimizer.minimize(loss, global_step=tf.train.get_global_step())
+
+    ## -----------------------------------------------------------
+    ## 6. Create a custom hook, and pass it to the Estimator Spec:
 
     comet_hook = CometSessionHook(
         experiment,
@@ -88,18 +104,16 @@ def my_model(features, labels, mode, params):
         every_n_iter=None,
         every_n_secs=5)
 
-    return tf.estimator.EstimatorSpec(
-        mode=mode,
-        predictions=predictions,
-        loss=loss,
-        train_op=train_op,
-        training_hooks=[comet_hook],
-        eval_metric_ops=metrics)
+    return tf.estimator.EstimatorSpec(mode, loss=loss,
+                                      training_hooks=[comet_hook],
+                                      train_op=train_op)
 
+    ## -----------------------------------------------------------
 
 def main(argv):
     args = parser.parse_args(argv[1:])
-    
+
+
     # Fetch the data
     (train_x, train_y), (test_x, test_y) = iris_data.load_data()
 
@@ -141,7 +155,7 @@ def main(argv):
 
     predictions = classifier.predict(
         input_fn=lambda:iris_data.eval_input_fn(predict_x,
-                                                labels=expected,
+                                                labels=None,
                                                 batch_size=args.batch_size))
 
     for pred_dict, expec in zip(predictions, expected):
