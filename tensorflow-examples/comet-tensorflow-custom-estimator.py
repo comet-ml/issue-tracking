@@ -32,8 +32,6 @@ from __future__ import print_function
 from comet_ml import Experiment
 experiment = Experiment(project_name="tensorflow")
 
-## 4. Open you experiment in a webpage and watch it learn:
-experiment.display()
 ## -----------------------------------------------------------
 
 import argparse
