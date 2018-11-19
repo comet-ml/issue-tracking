@@ -30,16 +30,22 @@ from __future__ import print_function
 ## 3. Add these two lines: -----------------------------------
 
 from comet_ml import Experiment
-experiment = Experiment(project_name="tensorflow")
+experiment = Experiment(project_name="tensorflow",
+                        auto_metric_logging=False) ## we'll do it!
 
-
+## 4. To see the experiment, uncomment this line:
+# experiment.display()
 
 ## -----------------------------------------------------------
 ## 5. Add a custom hook, like this one:
 
 from hooks import CometSessionHook
 
-## 6. See below
+## 6. See CometSessionHook below
+
+## That's it! It will log metrics accuracy, loss, step, parameters,
+## and more.
+
 ## -----------------------------------------------------------
 
 import argparse
