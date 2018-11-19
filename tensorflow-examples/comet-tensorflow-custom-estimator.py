@@ -32,6 +32,12 @@ from __future__ import print_function
 from comet_ml import Experiment
 experiment = Experiment(project_name="tensorflow")
 
+## 4. To see the experiment, uncomment this line:
+# experiment.display()
+
+## That's it! Comet.ml will automatically log metrics
+## accuracy, loss, steps/second, and much more.
+
 ## -----------------------------------------------------------
 
 import argparse
