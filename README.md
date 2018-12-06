@@ -21,6 +21,7 @@ Full documentation, help, and additional training examples are available:
 * [Examples](https://github.com/comet-ml/comet-examples)
 * [FAQ Page](www.comet.ml/faq)
 * [Release Notes](https://www.notion.so/cometml/Comet-ml-Release-Notes-93d864bcac584360943a73ae9507bcaa)
+* [Articles at Medium](https://medium.com/comet-ml)
 * Email us at <info@comet.ml>
 
 ## Python Package
