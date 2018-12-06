@@ -13,7 +13,7 @@ You can also find us on Slack:
 
 * https://cometml.slack.com/messages
 
-## Documentation
+## Documentation and Examples
 
 Full documentation and additional training examples are available at:
 
