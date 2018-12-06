@@ -13,12 +13,15 @@ You can also find us on Slack:
 
 * https://cometml.slack.com/messages
 
-## Documentation and Examples
+## Documentation, Help, and Examples
 
-Full documentation and additional training examples are available at:
+Full documentation, help, and additional training examples are available:
 
-* https://www.comet.ml/docs/
-* https://github.com/comet-ml/comet-examples
+* [Documentation](https://www.comet.ml/docs/)
+* [Example](https://github.com/comet-ml/comet-examples)
+* [FAQ Page](www.comet.ml/faq)
+* [Release Notes](https://www.notion.so/cometml/Comet-ml-Release-Notes-93d864bcac584360943a73ae9507bcaa)
+* Email us at <info@comet.ml>
 
 ## Python Package
 
