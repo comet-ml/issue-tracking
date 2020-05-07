@@ -1,4 +1,4 @@
-<img src="https://comet.ml/images/logo_comet_light.png" width="350" alt="Drawing" style="width: 350px;"/>
+<img src="https://www.comet.ml/images/logo_comet_light.png" width="350" alt="Drawing" style="width: 350px;"/>
 
 # Comet.ml Questions and Issues
 
