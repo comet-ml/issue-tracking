@@ -31,7 +31,7 @@ If possible please include the full stack trace of your issue here
 ```
 
 **Comet Debug Log**
-If possible, please follow the instructions [here]() to run Comet in debug mode and attach the resulting log file.  
+If possible, please follow the instructions [here](https://www.comet.ml/docs/python-sdk/advanced/#troubleshooting) to run Comet in debug mode and attach the resulting log file.  
 
 **Screenshots or GIFs**
 If applicable, add screenshots/gifs to help explain your problem.
