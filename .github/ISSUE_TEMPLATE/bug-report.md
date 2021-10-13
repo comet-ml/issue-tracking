@@ -40,5 +40,5 @@ If applicable, add screenshots/gifs to help explain your problem.
 ## Link to Comet Project/Experiment
 If applicable, please provide a link to your Comet Project or Experiment. 
 
-**Additional context**
+## Additional context
 Add any other context about the problem here.
