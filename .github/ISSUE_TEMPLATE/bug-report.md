@@ -16,7 +16,7 @@ A clear and concise description of what you expected to happen.
 **Where is the issue?**
 - [ ] Comet Python SDK
 - [ ] Comet UI
-
+- [  ] Third Party Integration (Hugging Face, TensorboardX, Pytorch Lighting etc)
 **To Reproduce**
 Steps to reproduce the behavior:
 1. Go to '...'
