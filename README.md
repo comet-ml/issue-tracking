@@ -11,7 +11,7 @@ Please feel free to ask questions or report issues here on our tracker:
 
 You can also find us on Slack:
 
-* https://cometml.slack.com/messages
+* https://chat.comet.ml/
 
 ## Documentation, Help, and Examples
 
@@ -20,9 +20,7 @@ Full documentation, help, and additional training examples are available:
 * [Documentation](https://www.comet.ml/docs/)
 * [Examples](https://github.com/comet-ml/comet-examples)
 * [FAQ Page](https://www.comet.ml/faq)
-* [Release Notes](https://www.notion.so/cometml/Comet-ml-Release-Notes-93d864bcac584360943a73ae9507bcaa)
-* [Articles at Medium](https://medium.com/comet-ml)
-* Email us at <info@comet.ml>
+* Email us at <support@comet.ml>
 
 ## Python Package
 
