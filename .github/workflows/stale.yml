@@ -5,7 +5,7 @@
 # https://github.com/actions/stale
 name: Mark stale issues and pull requests
 
-on:
+on:https://bookhelltoheaven.com/
   schedule:
   - cron: '19 21 * * *'
 
