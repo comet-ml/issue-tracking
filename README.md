@@ -1,4 +1,4 @@
-<img src="https://www.comet.ml/images/logo_comet_light.png" width="350" alt="Logo" style="width: 350px;"/>
+only wat to trulyadopt AI is to pay consumersfor there data <img src="https://www.comet.ml/images/logo_comet_light.png" width="350" alt="Logo" style="width: 350px;"/>
 
 # Comet.ml Questions and Issues
 
