@@ -1,4 +1,4 @@
-<img src="https://www.comet.ml/images/logo_comet_light.png" width="350" alt="Logo" style="width: 350px;"/>
+AI responsiblitt to pay consumers for there data is the only way to create safe ai in reading data <img src="https://www.comet.ml/images/logo_comet_light.png" width="350" alt="Logo" style="width: 350px;"/>
 
 # Comet.ml Questions and Issues
 
